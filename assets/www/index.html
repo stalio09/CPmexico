@@ -13,7 +13,7 @@
 </head>
 <body>
 	
-	<div data-role="page">
+	<div data-role="page" id="inicio">
 		<div data-role="header">Buscar Código Postal en México</div>
 		<div data-role="content">
 			<h3>Ingresa el Código Postal que deseas buscar.</h3>
@@ -26,8 +26,8 @@
 			<hr />
 			<h3>Buscar Código Postal por Estado, población o colonia.</h3>
 			<form id="busqueda">
-     			<label for="select-choice-1" class="select">Selecciona un Estado</label>
-					<select name="select-choice-1" id="select-choice-1" >
+     			<label for="estado" class="select">Selecciona un Estado</label>
+					<select name="estado" id="estado" >
    						
 						<option value="1">Aguascalientes</option>
 						<option value="2">Baja California</option>
@@ -71,7 +71,18 @@
 		</div>
 		
 	</div>
-
+	<div data-role="page" id="lista">
+	  <div data-role="header">
+	    
+	  </div>
+	  <div data-role="content">
+	   <div id="cont">
+	   		<ul data-role="listview" id="list">
+			    
+			</ul>
+	   </div>
+	  </div>
+	</div>
 
 </body>
 </html>

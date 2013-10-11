@@ -33,7 +33,23 @@ function faild(data)
 	showAlert(data,'Error','Aceptar',alertDismissed);
 }
 
+function jsonpCallbackC(data)
+{
+	$("#list").empty();
+	for(i in data.resp)
+	{
+		
+		$('#list').append('<li>'+data.resp[i].d_codigo+'\n'+data.resp[i].d_asenta+'\n'+data.resp[i].d_estado+'</li>');
+	}
+	$.mobile.changePage("#lista");
+	    //console.log(data.resp[i].d_codigo)
 
+}
+
+function jsonpCallbackB(data)
+{
+	alert(data.resp);
+}
 
 $(document).ready(function() {
   // Handler for .ready() called.
@@ -51,8 +67,8 @@ $(document).ready(function() {
 		}
 		else
 		{
-			var params = {cp:datoCP};	
-			jsonp('http://localhost/appCP/JsonController.php',params,'jsonpCallback','complete','faild');
+			var params = {cp:datoCP,fun:1,pkey:'123'};	
+			jsonp('http://localhost/appCP/api.php',params,'jsonpCallbackC','complete','faild');
 		}
 		
 	    return false;
@@ -61,7 +77,7 @@ $(document).ready(function() {
 	
 	$('#busqueda').submit(function(){
 		var datoColonia = $("#colonia").val();
-	
+		var datoEdo = $("#estado").val();
 		if(datoColonia =="")
 		{
 			showAlert('El campo Población/Colonia es requerido','Alerta','Aceptar',alertDismissed);
@@ -69,8 +85,8 @@ $(document).ready(function() {
 		}
 		else
 		{
-			var params = {col:datoColonia};	
-			jsonp('http://localhost/appCP/JsonController.php',params,'jsonpCallback','complete','faild');
+			var params = {col:datoColonia,edo:datoEdo,fun:2};	
+			jsonp('http://localhost/appCP/api.php',params,'jsonpCallbackB','complete','faild');
 		}
 			  
 	    return false;
