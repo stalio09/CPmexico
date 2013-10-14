@@ -35,11 +35,13 @@ function faild(data)
 
 function jsonpCallbackC(data)
 {
-	$("#list").empty();
+	$("#movie-table tbody").empty();
 	for(i in data.resp)
 	{
 		
-		$('#list').append('<li>'+data.resp[i].d_codigo+'\n'+data.resp[i].d_asenta+'\n'+data.resp[i].d_estado+'</li>');
+		//$('#list').append('<li>'+data.resp[i].d_codigo+'\n Asentamiento: '+data.resp[i].d_asenta+',  Estado:'+data.resp[i].d_estado+'</li>');
+		$('#movie-table').append('<tr>'	+'<td>'+data.resp[i].d_codigo+'</td>'+'<td>'+data.resp[i].d_asenta+'</td>'+'<td>'+data.resp[i].D_mnpio+'</td>'+'<td>'+data.resp[i].d_estado+'</td>'+
+		'</tr>');
 	}
 	$.mobile.changePage("#lista");
 	    //console.log(data.resp[i].d_codigo)
@@ -48,7 +50,15 @@ function jsonpCallbackC(data)
 
 function jsonpCallbackB(data)
 {
-	alert(data.resp);
+	$("#movie-table tbody").empty();
+	for(i in data.resp)
+	{
+		
+		//$('#list').append('<li>'+data.resp[i].d_codigo+'\n Asentamiento: '+data.resp[i].d_asenta+', Municipio: '+data.resp[i].D_mnpio+'</li>');
+		$('#movie-table').append('<tr>'	+'<td>'+data.resp[i].d_codigo+'</td>'+'<td>'+data.resp[i].d_asenta+'</td>'+'<td>'+data.resp[i].D_mnpio+'</td>'+'<td>'+data.resp[i].d_estado+'</td>'+
+				'</tr>');
+	}
+	$.mobile.changePage("#lista");
 }
 
 $(document).ready(function() {
@@ -85,7 +95,7 @@ $(document).ready(function() {
 		}
 		else
 		{
-			var params = {col:datoColonia,edo:datoEdo,fun:2};	
+			var params = {colonia:datoColonia,estado:datoEdo,fun:2,pkey:'123'};	
 			jsonp('http://localhost/appCP/api.php',params,'jsonpCallbackB','complete','faild');
 		}
 			  

@@ -14,9 +14,9 @@
 <body>
 	
 	<div data-role="page" id="inicio">
-		<div data-role="header">Buscar Código Postal en México</div>
+		<div data-role="header"><h1>Buscar Código Postal en México</h1></div>
 		<div data-role="content">
-			<h3>Ingresa el Código Postal que deseas buscar.</h3>
+			<p class="label">Ingresa el Código Postal que deseas buscar.</p>
 			<form id="consulta">
      			<label for="cp">Código Postal (5 dígitos):</label>
      			<input type="number" data-clear-btn="true" name="cp" id="cp" placeholder="Ejemplo: 64180" >
@@ -24,7 +24,7 @@
 			</form>
 			
 			<hr />
-			<h3>Buscar Código Postal por Estado, población o colonia.</h3>
+			<p class="label">Buscar Código Postal por Estado, población o colonia.</p>
 			<form id="busqueda">
      			<label for="estado" class="select">Selecciona un Estado</label>
 					<select name="estado" id="estado" >
@@ -73,13 +73,23 @@
 	</div>
 	<div data-role="page" id="lista">
 	  <div data-role="header">
-	    
+	       <a href="#" data-rel="back" data-icon="back" data-iconpos="notext" data-theme="b" data-iconshadow="false" data-inline="true">Regresar</a>
+		    <h1>Buscar Código Postal en México</h1>
 	  </div>
 	  <div data-role="content">
 	   <div id="cont">
-	   		<ul data-role="listview" id="list">
-			    
-			</ul>
+	   		<table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive table-stroke" >
+			  <thead>
+			    <tr>
+			      <th data-priority="1">CP</th>
+			      <th data-priority="3">Asentamiento</th>
+			      <th data-priority="3">Municipio</th>
+			      <th data-priority="3">Estado</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  </tbody>
+			</table>
 	   </div>
 	  </div>
 	</div>
