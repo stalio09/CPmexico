@@ -36,29 +36,41 @@ function faild(data)
 function jsonpCallbackC(data)
 {
 	$("#movie-table tbody").empty();
-	for(i in data.resp)
+	if(data.resp == '')
 	{
-		
-		//$('#list').append('<li>'+data.resp[i].d_codigo+'\n Asentamiento: '+data.resp[i].d_asenta+',  Estado:'+data.resp[i].d_estado+'</li>');
-		$('#movie-table').append('<tr>'	+'<td>'+data.resp[i].d_codigo+'</td>'+'<td>'+data.resp[i].d_asenta+'</td>'+'<td>'+data.resp[i].D_mnpio+'</td>'+'<td>'+data.resp[i].d_estado+'</td>'+
-		'</tr>');
+		showAlert('No se encontraron resultados.','Alerta','Aceptar',alertDismissed);
 	}
-	$.mobile.changePage("#lista");
-	    //console.log(data.resp[i].d_codigo)
+	else
+	{
+		for(i in data.resp)
+		{
+			$('#movie-table').append('<tr>'	+'<td  style="background-color:#6FACD5;color:#ffffff; >'+data.resp[i].d_codigo+'</td>'+'<td>'+data.resp[i].d_asenta+'</td>'+'<td>'+data.resp[i].D_mnpio+'</td>'+'<td>'+data.resp[i].d_estado+'</td>'+
+			'</tr>');
+		}
+		$.mobile.changePage("#lista");
+	}   
 
 }
 
 function jsonpCallbackB(data)
 {
 	$("#movie-table tbody").empty();
-	for(i in data.resp)
+	if(data.resp == '')
 	{
-		
-		//$('#list').append('<li>'+data.resp[i].d_codigo+'\n Asentamiento: '+data.resp[i].d_asenta+', Municipio: '+data.resp[i].D_mnpio+'</li>');
-		$('#movie-table').append('<tr>'	+'<td>'+data.resp[i].d_codigo+'</td>'+'<td>'+data.resp[i].d_asenta+'</td>'+'<td>'+data.resp[i].D_mnpio+'</td>'+'<td>'+data.resp[i].d_estado+'</td>'+
-				'</tr>');
+		showAlert('No se encontraron resultados.','Alerta','Aceptar',alertDismissed);
 	}
-	$.mobile.changePage("#lista");
+	else
+	{
+		for(i in data.resp)
+		{
+		
+			$('#movie-table').append('<tr>'	+'<td  style="background-color:#6FACD5;color:#ffffff; " >'+data.resp[i].d_codigo+'</td>'+'<td>'+data.resp[i].d_asenta+'</td>'+'<td>'+data.resp[i].D_mnpio+'</td>'+'<td>'+data.resp[i].d_estado+'</td>'+
+					'</tr>');
+		}
+		$.mobile.changePage("#lista");
+	}
+	
+	
 }
 
 $(document).ready(function() {
@@ -75,10 +87,15 @@ $(document).ready(function() {
 			showAlert('El campo Código postal es requerido','Alerta','Aceptar',alertDismissed);
 			return false;
 		}
+		else if( datoCP.length > 5)
+		{
+			showAlert('El campo Código postal solo es de 5 dígitos','Error','Aceptar',alertDismissed);
+			return false;
+		}
 		else
 		{
 			var params = {cp:datoCP,fun:1,pkey:'123'};	
-			jsonp('http://localhost/appCP/api.php',params,'jsonpCallbackC','complete','faild');
+			jsonp('http://ideame.hol.es/appCP/api.php',params,'jsonpCallbackC','complete','faild');
 		}
 		
 	    return false;
@@ -96,7 +113,7 @@ $(document).ready(function() {
 		else
 		{
 			var params = {colonia:datoColonia,estado:datoEdo,fun:2,pkey:'123'};	
-			jsonp('http://localhost/appCP/api.php',params,'jsonpCallbackB','complete','faild');
+			jsonp('http://ideame.hol.es/appCP/api.php',params,'jsonpCallbackB','complete','faild');
 		}
 			  
 	    return false;
