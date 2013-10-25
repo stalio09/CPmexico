@@ -47,7 +47,7 @@
     following tag to your config.xml; you will still have the INTERNET
     permission on your app, which PhoneGap requires. -->
 	<preference name="permissions" value="none"/>
-
+<!-- 
     <feature name="App">
       <param name="android-package" value="org.apache.cordova.App"/>
     </feature>
@@ -68,7 +68,7 @@
     </feature>
     <feature name="InAppBrowser">
       <param name="android-package" value="org.apache.cordova.InAppBrowser"/>
-    </feature>
+    </feature>-->
     <!-- Deprecated plugins element. Remove in 3.0 -->
     <plugins>
     </plugins>
