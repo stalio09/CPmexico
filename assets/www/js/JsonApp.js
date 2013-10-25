@@ -44,7 +44,7 @@ function jsonpCallbackC(data)
 	{
 		for(i in data.resp)
 		{
-			$('#movie-table').append('<tr>'	+'<td  style="background-color:#6FACD5;color:#ffffff; >'+data.resp[i].d_codigo+'</td>'+'<td>'+data.resp[i].d_asenta+'</td>'+'<td>'+data.resp[i].D_mnpio+'</td>'+'<td>'+data.resp[i].d_estado+'</td>'+
+			$('#movie-table').append('<tr>'	+'<td  style="background-color:#6FACD5;color:#ffffff;">'+data.resp[i].d_codigo+'</td>'+'<td>'+data.resp[i].d_asenta+'</td>'+'<td>'+data.resp[i].D_mnpio+'</td>'+'<td>'+data.resp[i].d_estado+'</td>'+
 			'</tr>');
 		}
 		$.mobile.changePage("#lista");

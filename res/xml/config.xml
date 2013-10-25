@@ -43,6 +43,10 @@
       <preference name="InAppBrowserStorageEnabled" value="true" />
       <preference name="disallowOverscroll" value="true" />
     -->
+<!-- If you do not want any permissions to be added to your app, add the
+    following tag to your config.xml; you will still have the INTERNET
+    permission on your app, which PhoneGap requires. -->
+	<preference name="permissions" value="none"/>
 
     <feature name="App">
       <param name="android-package" value="org.apache.cordova.App"/>
@@ -53,24 +57,6 @@
     <feature name="Device">
       <param name="android-package" value="org.apache.cordova.Device"/>
     </feature>
-    <feature name="Accelerometer">
-      <param name="android-package" value="org.apache.cordova.AccelListener"/>
-    </feature>
-    <feature name="Compass">
-      <param name="android-package" value="org.apache.cordova.CompassListener"/>
-    </feature>
-    <feature name="Media">
-      <param name="android-package" value="org.apache.cordova.AudioHandler"/>
-    </feature>
-    <feature name="Camera">
-      <param name="android-package" value="org.apache.cordova.CameraLauncher"/>
-    </feature>
-    <feature name="Contacts">
-      <param name="android-package" value="org.apache.cordova.ContactManager"/>
-    </feature>
-    <feature name="File">
-      <param name="android-package" value="org.apache.cordova.FileUtils"/>
-    </feature>
     <feature name="NetworkStatus">
       <param name="android-package" value="org.apache.cordova.NetworkManager"/>
     </feature>
@@ -79,24 +65,6 @@
     </feature>
     <feature name="Storage">
       <param name="android-package" value="org.apache.cordova.Storage"/>
-    </feature>
-    <feature name="FileTransfer">
-      <param name="android-package" value="org.apache.cordova.FileTransfer"/>
-    </feature>
-    <feature name="Capture">
-      <param name="android-package" value="org.apache.cordova.Capture"/>
-    </feature>
-    <feature name="Battery">
-      <param name="android-package" value="org.apache.cordova.BatteryListener"/>
-    </feature>
-    <feature name="SplashScreen">
-      <param name="android-package" value="org.apache.cordova.SplashScreen"/>
-    </feature>
-    <feature name="Echo">
-      <param name="android-package" value="org.apache.cordova.Echo"/>
-    </feature>
-    <feature name="Globalization">
-      <param name="android-package" value="org.apache.cordova.Globalization"/>
     </feature>
     <feature name="InAppBrowser">
       <param name="android-package" value="org.apache.cordova.InAppBrowser"/>
