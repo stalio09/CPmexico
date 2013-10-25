@@ -18,16 +18,16 @@
  under the License.
 -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
-        id        = "io.cordova.helloCordova"
-        version   = "2.0.0">
-    <name>Hello Cordova</name>
+        id        = "com.local.CPmexico"
+        version   = "1.0.1">
+    <name>CPmexico App</name>
 
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+       Ecuentra cualquier Código Postal de México
     </description>
 
-    <author href="http://cordova.io" email="dev@cordova.apache.org">
-        Apache Cordova Team
+    <author href="https://github.com/stalio09/CPmexico" email="aurelio.cuautle.reyes@gmail.com">
+        Aurelio Cuautle Reyes
     </author>
 
     <access origin="*"/>
