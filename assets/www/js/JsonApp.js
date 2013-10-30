@@ -72,17 +72,37 @@ function jsonpCallbackB(data)
 	
 	
 }
+function onDeviceReady() {
+    checkConnection();
+}
 
+function checkConnection() {
+    var networkState = navigator.network.connection.type;
+    var flag = false;
+	if(networkState == Connection.NONE){
+		// No tenemos conexión
+		showAlert('La plicación requiere conexión a Internet','Error','Aceptar',alertDismissed);
+	}
+	else{
+		flag = true;
+	}
+	
+	return flag;
+}
 $(document).ready(function() {
   // Handler for .ready() called.
 	
-	//document.addEventListener("deviceready", onDeviceReady, false);
+	document.addEventListener("deviceready", onDeviceReady, false);
 
 	//controla el submit del login
 	$('#consulta').submit(function(){
 		var datoCP = $("#cp").val();
 	
-		if(datoCP =="")
+		if(checkConnection() == false)
+		{
+			return false;
+		}
+		else if(datoCP =="")
 		{
 			showAlert('El campo Código postal es requerido','Alerta','Aceptar',alertDismissed);
 			return false;
@@ -105,7 +125,11 @@ $(document).ready(function() {
 	$('#busqueda').submit(function(){
 		var datoColonia = $("#colonia").val();
 		var datoEdo = $("#estado").val();
-		if(datoColonia =="")
+		if(checkConnection() == false)
+		{
+			return false;
+		}
+		else if(datoColonia =="")
 		{
 			showAlert('El campo Población/Colonia es requerido','Alerta','Aceptar',alertDismissed);
 			return false;
