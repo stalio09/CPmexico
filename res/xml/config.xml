@@ -53,7 +53,7 @@
     </feature>
     <feature name="Geolocation">
       <param name="android-package" value="org.apache.cordova.GeoBroker"/>
-    </feature>
+    </feature>-->
     <feature name="Device">
       <param name="android-package" value="org.apache.cordova.Device"/>
     </feature>
@@ -62,13 +62,13 @@
     </feature>
     <feature name="Notification">
       <param name="android-package" value="org.apache.cordova.Notification"/>
-    </feature>
+    </feature><!--
     <feature name="Storage">
       <param name="android-package" value="org.apache.cordova.Storage"/>
     </feature>
     <feature name="InAppBrowser">
       <param name="android-package" value="org.apache.cordova.InAppBrowser"/>
-    </feature>
+    </feature>-->
     <!-- Deprecated plugins element. Remove in 3.0 -->
     <plugins>
      <plugin name="Device" value="org.apache.cordova.Device"/>
