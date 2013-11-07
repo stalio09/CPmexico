@@ -10,22 +10,42 @@
 	
 	<link rel="stylesheet" href="css/style.css" />
 	<script src="js/JsonApp.js"></script>
+	
 </head>
 <body>
 	
 	<div data-role="page" id="inicio">
 		<!-- <div data-role="header"><h1>Buscar Código Postal en México</h1></div> -->
-		
-		<div data-role="content" class="jqm-content">
+	    
+		<div data-role="content" >
+
 
 			<div data-role="tabs" id="tabs">
 		      <div data-role="navbar">
 			    <ul>
-			      <li><a href="#one" data-ajax="false">Consultar Código Postal</a></li>
-			      <li><a href="#two" data-ajax="false">Buscar Código Postal</a></li>
-			      
+			      <li><a href="#one" class="ui-btn-active" data-icon="info"  data-ajax="false">Consultar</a></li>
+			      <li><a href="#two"  data-icon="search"  data-ajax="false">Buscar</a></li>
+			      <li><a href="#geocp"  data-icon="location"  data-ajax="false">Ubicarme</a></li>
+			      <li><a href="#acerca"  data-icon="alert"  data-ajax="false">Acerca de</a></li>
 			    </ul>
 		      </div>
+		      
+		      <div id="acerca" data-role="content">
+		      	<h3 class="label">Descripción del Servicio</h3>
+		      		<p><strong>CPmexico</strong> es una aplicación gratuita que ofrece buscar información sobre los códigos postales de México, así como ayudar a encontrar una ubicación por medio de geolocalización, tomando en cuenta que no se almacena información alguna del usuario y que este acepta el uso de la geolocalización cuando instala la aplicación.</p>
+		      		<p>Si por alguna razón no estuviera de acuerdo con la aplicación, el usuario deberá borrarla de su dispositivo.</p>
+		      	<h3 class="label">Preguntas Frecuentes</h3>
+		      	<p><strong>¿Cuanto cuesta el servicio?</strong>
+		      		<br> CPmexico es una aplicación gratuita y no cobra por la información que brinda. Debido a que requiere conexión a internet puede que su operador cobre por los datos transferidos.
+		      	</p>
+		      	<p><strong>¿CPmexico almacena mis datos de ubicación?</strong>
+		      		<br> CPmexico no almacena ningún tipo de información del usuario en el dispositivo o de forma externa. El dispositivo puede guardar información de la aplicación (cache) esto es ajeno a la aplicación.
+		      	</p>
+		      	<p><strong>¿Cómo funciona CPmexico?</strong>
+		      		<br>La aplicación se conecta a un servicio web que proporciona la información requerida sobre los códigos postales de México, la ubicación es obtenida al analizar los datos de geoposicionamiento (latitud, longitud).
+		      	</p>
+		      </div>
+		     
 		      <div id="one" class="ui-body-d ui-content">
 		        <p class="label">Ingresa el Código Postal que deseas buscar.</p>
 				<form id="consulta">
@@ -82,9 +102,42 @@
      			<input type="submit" value="Buscar">
 				</form>  
 		      </div>
+		      
+		      <div id="geocp">
+		      	<div class="ui-field-contain">
+				    <label for="ubicame" class="label">Buscar dirección por geolocalización:</label>
+				    <input  id="ubicame"  type="button" value="Ubicarme" />
+				</div>
+				<div id="floatingBarsG" style="margin-left: auto; margin-right: auto;display: none;">
+					<div class="blockG" id="rotateG_01">
+					</div>
+					<div class="blockG" id="rotateG_02">
+					</div>
+					<div class="blockG" id="rotateG_03">
+					</div>
+					<div class="blockG" id="rotateG_04">
+					</div>
+					<div class="blockG" id="rotateG_05">
+					</div>
+					<div class="blockG" id="rotateG_06">
+					</div>
+					<div class="blockG" id="rotateG_07">
+					</div>
+					<div class="blockG" id="rotateG_08">
+					</div>
+				</div> 
+				<div id="datageocp">
+					
+				</div>
+		      </div>
+		      
+		      
 		    </div>
 		    
 		</div><!-- /content -->
+		
+		
+		
 	</div>
 	<div data-role="page" id="lista">
 	  <div data-role="header" data-position="fixed">
@@ -98,6 +151,7 @@
 			    <tr>
 			      <th data-priority="1">CP</th>
 			      <th data-priority="3">Asentamiento</th>
+			      <th data-priority="3">Tipo</th>
 			      <th data-priority="3">Municipio</th>
 			      <th data-priority="3">Estado</th>
 			    </tr>

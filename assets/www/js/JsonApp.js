@@ -19,14 +19,14 @@ function jsonp(urldir,dat,jsonpCallbackFunction,succesFunction,errorFunction){
         dataType: 'jsonp',
         jsonp: 'callback',
         jsonpCallback: jsonpCallbackFunction,
-        success: succesFunction,
+        //success: succesFunction,
         error: errorFunction
     });
 }
 
 function complete(data)
 {
-	showAlert(data,'Error','Aceptar',alertDismissed);
+	showAlert(data,'Alerta','Aceptar',alertDismissed);
 }
 function faild(data)
 {
@@ -44,7 +44,7 @@ function jsonpCallbackC(data)
 	{
 		for(i in data.resp)
 		{
-			$('#movie-table').append('<tr>'	+'<td  style="background-color:#6FACD5;color:#ffffff;">'+data.resp[i].d_codigo+'</td>'+'<td>'+data.resp[i].d_asenta+'</td>'+'<td>'+data.resp[i].D_mnpio+'</td>'+'<td>'+data.resp[i].d_estado+'</td>'+
+			$('#movie-table').append('<tr>'	+'<td  style="background-color:#6FACD5;color:#ffffff;">'+data.resp[i].d_codigo+'</td>'+'<td>'+data.resp[i].d_asenta+'</td>'+'<td>'+data.resp[i].d_tipo_asenta+'<td>'+data.resp[i].D_mnpio+'</td>'+'<td>'+data.resp[i].d_estado+'</td>'+
 			'</tr>');
 		}
 		$.mobile.changePage("#lista");
@@ -64,7 +64,7 @@ function jsonpCallbackB(data)
 		for(i in data.resp)
 		{
 		
-			$('#movie-table').append('<tr>'	+'<td  style="background-color:#6FACD5;color:#ffffff; " >'+data.resp[i].d_codigo+'</td>'+'<td>'+data.resp[i].d_asenta+'</td>'+'<td>'+data.resp[i].D_mnpio+'</td>'+'<td>'+data.resp[i].d_estado+'</td>'+
+			$('#movie-table').append('<tr>'	+'<td  style="background-color:#6FACD5;color:#ffffff; " >'+data.resp[i].d_codigo+'</td>'+'<td>'+data.resp[i].d_asenta+'</td>'+'<td>'+data.resp[i].d_tipo_asenta+'<td>'+data.resp[i].D_mnpio+'</td>'+'<td>'+data.resp[i].d_estado+'</td>'+
 					'</tr>');
 		}
 		$.mobile.changePage("#lista");
@@ -74,6 +74,7 @@ function jsonpCallbackB(data)
 }
 function onDeviceReady() {
     checkConnection();
+    document.addEventListener("menubutton", menuPulsado, false);
 }
 
 function checkConnection() {
@@ -81,7 +82,7 @@ function checkConnection() {
     var flag = false;
 	if(networkState == Connection.NONE){
 		// No tenemos conexión
-		showAlert('La plicación requiere conexión a Internet','Error','Aceptar',alertDismissed);
+		showAlert('Red no disponible. Reintente más tarde','Error','Aceptar',alertDismissed);
 	}
 	else{
 		flag = true;
@@ -89,11 +90,47 @@ function checkConnection() {
 	
 	return flag;
 }
+
+function onSuccess(position) {
+	
+    get_geocp(position.coords.latitude ,position.coords.longitude);
+  
+}
+
+// La función 'callback' onError recibe un objeto `PositionError`.
+//
+function onError(error) {
+	showAlert('código: '    + error.code    + '\n' + 'mensaje: ' + error.message + '\n','Error','Aceptar',null);
+}
+
+
+function get_geocp(latitud,longitud)
+{
+	var params = {latlng:latitud+','+longitud,sensor:true};	
+	$.ajax({
+        url: 'http://maps.googleapis.com/maps/api/geocode/json',
+        data: params,
+        dataType: 'json',
+        success: function (datacp, textStatus, jqXHR) {
+          $('#datageocp').html('<h4><img src="Marker.png" />'+datacp['results'][0].formatted_address+'</h4>');
+         
+        }
+    });
+	
+}
+
+//document ready
 $(document).ready(function() {
   // Handler for .ready() called.
 	
 	document.addEventListener("deviceready", onDeviceReady, false);
-
+	
+	$( document ).ajaxStart(function() {
+		$( "#floatingBarsG" ).show();
+	});
+	$( document ).ajaxStop(function() {
+		$( "#floatingBarsG" ).hide();
+	});
 	//controla el submit del login
 	$('#consulta').submit(function(){
 		var datoCP = $("#cp").val();
@@ -143,5 +180,9 @@ $(document).ready(function() {
 	    return false;
 	});
 	
-	
+	$('#ubicame').click(function(){
+		
+		 navigator.geolocation.getCurrentPosition(onSuccess, onError);
+		
+	});
 });
